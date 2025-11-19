@@ -6,7 +6,6 @@
 .env.test
 .env.production
 .env.staging
-*.env
 
 # Dependencies
 node_modules/

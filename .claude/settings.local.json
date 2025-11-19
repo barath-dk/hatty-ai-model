@@ -15,7 +15,8 @@
       "Bash(nul)",
       "Bash(nslookup:*)",
       "Bash(docker-compose down:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(dir /s /b nul 2)"
     ],
     "deny": [],
     "ask": []
