@@ -1,0 +1,154 @@
+# Environment variables
+#.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+*.env
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Security and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+*.csr
+*.der
+*.cer
+*.jks
+*.keystore
+*.truststore
+secrets.json
+credentials.json
+auth.json
+config/secrets.*
+*.secret
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+*.ppk
+.npmrc
+.yarnrc
+
+# API keys and tokens
+apikeys.txt
+api_keys.txt
+.api_key
+token.txt
+*.token
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+
+# MySQL runtime files
+mysql/
+*.sock
+*.pid
+*.ibd
+*.frm
+ibdata*
+ib_logfile*
+ib_buffer_pool
+auto.cnf
+binlog.*
+*.index
+
+# Logs
+logs/
+*.log
+log.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Windows reserved names
+nul
+NUL
+CON
+PRN
+AUX
+com[1-9]
+lpt[1-9]
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Coverage
+coverage/
+.nyc_output/
+*.lcov
+.coverage
+
+# Misc
+.cache/
+.terraform/
+*.tfstate
+*.tfstate.backup

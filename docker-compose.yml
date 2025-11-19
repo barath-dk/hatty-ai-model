@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: hatty-ai-model-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-supersecret}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-hatty_ai_model}
+      MYSQL_USER: ${MYSQL_USER:-hatty}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-hatty123}
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - hatty-network
+
+  # API Service
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: hatty-ai-model-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=mysql://${MYSQL_USER:-hatty}:${MYSQL_PASSWORD:-hatty123}@mysql:3306/${MYSQL_DATABASE:-hatty_ai_model}
+      - FRONTEND_URL=http://localhost:8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - XAI_API_KEY=${XAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - MISTRAL_API_KEY=${MISTRAL_API_KEY}
+      - STAGING_DOMAIN=${STAGING_DOMAIN:-lvh.me}
+      - USE_PATH_BASED_PREVIEWS=false
+    ports:
+      - "8001:3001"
+    depends_on:
+      - mysql
+    volumes:
+      - ./apps/api:/app
+      - /app/node_modules
+      - staging_data:/var/www/staging
+    networks:
+      - hatty-network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: hatty-ai-model-frontend
+    restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_API_URL=http://localhost:8001
+    ports:
+      - "8000:3000"
+    depends_on:
+      - api
+    # volumes removed for production standalone build
+    # For development mode, uncomment these:
+    # volumes:
+    #   - ./apps/frontend:/app
+    #   - /app/node_modules
+    #   - /app/.next
+    networks:
+      - hatty-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: hatty-ai-model-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.subdomain.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - staging_data:/var/www/staging
+    depends_on:
+      - frontend
+      - api
+    networks:
+      - hatty-network
+
+networks:
+  hatty-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  staging_data:

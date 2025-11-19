@@ -1,0 +1,118 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --bs-body-bg: #0a0f1a;
+  --bs-body-color: #e2e8f0;
+  --bs-primary: #3b82f6;
+  --bs-secondary: #1e293b;
+  --bs-border-color: #334155;
+}
+
+body {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+  min-height: 100vh;
+  color: var(--bs-body-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Custom utilities */
+.glass {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  backdrop-filter: blur(16px);
+  background: rgba(2, 6, 23, 0.5);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Override Bootstrap dark theme */
+.btn-outline-secondary {
+  --bs-btn-color: #94a3b8;
+  --bs-btn-border-color: #334155;
+  --bs-btn-hover-color: #e2e8f0;
+  --bs-btn-hover-bg: #1e293b;
+  --bs-btn-hover-border-color: #475569;
+}
+
+.btn-primary {
+  --bs-btn-bg: linear-gradient(to right, #2563eb, #9333ea);
+  --bs-btn-border-color: transparent;
+  background: linear-gradient(to right, #2563eb, #9333ea);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #7e22ce);
+}
+
+.card {
+  --bs-card-bg: rgba(2, 6, 23, 0.5);
+  --bs-card-border-color: rgba(51, 65, 85, 0.5);
+}
+
+.form-control {
+  background-color: rgba(15, 23, 42, 0.5);
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.form-control:focus {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-color: #3b82f6;
+  color: #e2e8f0;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+.form-control::placeholder {
+  color: #64748b;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
