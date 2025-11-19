@@ -131,3 +131,6 @@ coverage/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+#error while commit this files
+*.sock
