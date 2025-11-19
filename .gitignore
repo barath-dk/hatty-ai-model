@@ -49,26 +49,6 @@ api_keys.txt
 token.txt
 *.token
 
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-*.sql
-*.dump
-
-# MySQL runtime files
-mysql/
-*.sock
-*.pid
-*.ibd
-*.frm
-ibdata*
-ib_logfile*
-ib_buffer_pool
-auto.cnf
-binlog.*
-*.index
-
 # Logs
 logs/
 *.log
